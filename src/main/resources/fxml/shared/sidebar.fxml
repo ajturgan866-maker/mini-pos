@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox prefWidth="250" spacing="5" styleClass="sidebar"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.minipos.pos.controller.shared.SidebarController"
+      stylesheets="@../../css/main.css">
+
+    <padding>
+        <Insets top="20" right="10" bottom="20" left="10"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 0 0 30 10;">
+        <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+            <Image url="@../../icons/dashboard.png"/>
+        </ImageView>
+        <Label text="MINI POS" style="-fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #1976D2;"/>
+    </HBox>
+
+    <Button fx:id="btnDashboard" text="Панель управления" onAction="#showDashboard"
+            styleClass="menu-button-active" maxWidth="Infinity">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <Image url="@../../icons/dashboard.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button fx:id="btnUsers" text="Пользователи" onAction="#showUsers"
+            styleClass="menu-button" maxWidth="Infinity">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <Image url="@../../icons/users.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button fx:id="btnProducts" text="Товары" onAction="#showProducts"
+            styleClass="menu-button" maxWidth="Infinity">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <Image url="@../../icons/products.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button fx:id="btnCategories" text="Категории" onAction="#showCategories"
+            styleClass="menu-button" maxWidth="Infinity">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <Image url="@../../icons/categories.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button fx:id="btnSales" text="История продаж" onAction="#showSales"
+            styleClass="menu-button" maxWidth="Infinity">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <Image url="@../../icons/sales.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Region VBox.vgrow="ALWAYS" />
+
+    <Button fx:id="btnSettings" text="Настройки" onAction="#showSettings"
+            styleClass="menu-button" maxWidth="Infinity">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <Image url="@../../icons/settings.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button text="Выйти" onAction="#handleLogout"
+            styleClass="menu-button" maxWidth="Infinity" style="-fx-text-fill: #F44336;">
+        <graphic>
+            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
+                <Image url="@../../icons/logout.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+</VBox>

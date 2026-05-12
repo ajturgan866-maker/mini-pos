@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane prefWidth="1100" prefHeight="700" style="-fx-background-color: #F5F7FA;"
+           xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.minipos.pos.controller.auth.SetupController">
+
+    <VBox spacing="25" alignment="CENTER" maxWidth="400" maxHeight="520"
+          style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);">
+
+        <VBox alignment="CENTER" spacing="10">
+            <Circle radius="25" fill="#4CAF50"/> <Label text="Начальная настройка" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+            <Label text="Создайте аккаунт владельца системы" style="-fx-text-fill: #777777;"/>
+        </VBox>
+
+        <VBox spacing="15">
+            <VBox spacing="5">
+                <Label text="Логин администратора" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="usernameField" promptText="Например: admin"
+                           style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #E0E0E0;"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Пароль" style="-fx-font-weight: bold;"/>
+                <PasswordField fx:id="passwordField" promptText="••••••••"
+                               style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #E0E0E0;"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Подтвердите пароль" style="-fx-font-weight: bold;"/>
+                <PasswordField fx:id="confirmPasswordField" promptText="••••••••"
+                               style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #E0E0E0;"/>
+            </VBox>
+        </VBox>
+
+        <Button text="ЗАРЕГИСТРИРОВАТЬ ВЛАДЕЛЬЦА" onAction="#handleSetup" maxWidth="Infinity" prefHeight="45"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;"/>
+
+        <Label fx:id="errorLabel" text="Пароли не совпадают" visible="false" style="-fx-text-fill: #D32F2F;"/>
+    </VBox>
+</StackPane>

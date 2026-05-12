@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.minipos.pos.controller.cashier.ReceiptController"
+      spacing="10"
+      style="-fx-padding: 20;">
+
+    <Label text="RECEIPT" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <Label fx:id="saleIdLabel"/>
+    <Label fx:id="totalLabel"/>
+    <Label fx:id="paymentTypeLabel"/>
+
+    <Separator/>
+
+    <TextArea fx:id="itemsArea" editable="false" prefHeight="200"/>
+
+    <Button text="Close" onAction="#close"/>
+</VBox>

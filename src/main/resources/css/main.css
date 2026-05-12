@@ -1,0 +1,107 @@
+
+primaryStage.setMinWidth(1100);
+primaryStage.setMinHeight(700);
+   primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/app-icon.png")));
+
+/* Основные цвета из макета */
+.root {
+    -fx-accent: #1976D2;
+    -fx-background-color: #F5F7FA;
+}
+
+/* Карточки статистики */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 4);
+    -fx-padding: 20;
+}
+
+/* Боковая панель */
+.sidebar {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* Кнопки меню */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #616161;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 20;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: #F0F4F8;
+    -fx-text-fill: #1976D2;
+}
+
+.menu-button-active {
+    -fx-background-color: #E3F2FD;
+    -fx-text-fill: #1976D2;
+    -fx-border-color: transparent transparent transparent #1976D2;
+    -fx-border-width: 0 0 0 4;
+}
+
+/* Таблицы */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-base: white;
+    -fx-selection-bar: #E3F2FD;
+}
+
+/* Убираем лишние рамки у таблицы */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F8F9FA;
+    -fx-border-color: transparent transparent #EEEEEE transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40;
+}
+
+.table-view .table-row-cell {
+    -fx-cell-size: 50;
+    -fx-border-color: transparent transparent #F1F1F1 transparent;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #E3F2FD;
+    -fx-text-fill: #1976D2;
+}
+
+/* Стили для кнопок в диалоговых окнах */
+.dialog-pane .button {
+    -fx-background-color: #1976D2;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 8 15;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #1565C0;
+}
+
+/* Поля ввода в стиле Windows */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 8;
+}
+
+.text-field:focused {
+    -fx-border-color: #1976D2;
+    -fx-border-width: 2;
+    -fx-padding: 7; /* уменьшаем на 1, чтобы текст не прыгал из-за ширины границы */
+}

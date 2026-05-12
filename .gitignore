@@ -1,0 +1,25 @@
+# Скомпилированные файлы (артефакты)
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Настройки IntelliJ IDEA
+.idea/
+*.iml
+out/
+gen/
+
+# Логи и временные файлы
+*.log
+logs/
+temp/
+tmp/
+
+# Файлы операционной системы
+.DS_Store
+Thumbs.db
+
+# Конфигурация базы (если хранишь пароли в локальных properties)
+# application-local.properties

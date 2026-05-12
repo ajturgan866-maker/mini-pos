@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.minipos.pos.controller.admin.AdminDashboardController"
+            stylesheets="@../../css/main.css">
+
+    <left>
+        <fx:include source="../shared/sidebar.fxml" fx:id="sidebar"/>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <VBox spacing="25" style="-fx-background-color: #F5F7FA;">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+
+                <HBox alignment="CENTER_LEFT">
+                    <VBox HBox.hgrow="ALWAYS">
+                        <Label text="Обзор системы" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblWelcome" text="Добро пожаловать, администратор" style="-fx-text-fill: gray;"/>
+                    </VBox>
+                    <Button text="Сформировать Z-отчет" onAction="#handleZReport"
+                            style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-padding: 10 20;"/>
+                </HBox>
+
+                <HBox spacing="20">
+                    <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                        <Label text="Выручка за сегодня" style="-fx-text-fill: #757575;"/>
+                        <Label fx:id="lblTodaySales" text="0.00 сом" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
+                    </VBox>
+
+                    <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                        <Label text="Продаж (кол-во)" style="-fx-text-fill: #757575;"/>
+                        <Label fx:id="lblTotalOrders" text="0" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+                    </VBox>
+
+                    <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                        <Label text="Популярная категория" style="-fx-text-fill: #757575;"/>
+                        <Label fx:id="lblTopCategory" text="---" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1976D2;"/>
+                    </VBox>
+                </HBox>
+
+                <VBox styleClass="card" VBox.vgrow="ALWAYS">
+                    <Label text="Последние транзакции" style="-fx-font-weight: bold; -fx-padding: 0 0 15 0;"/>
+                    <TableView fx:id="recentSalesTable" prefHeight="400">
+                        <columns>
+                            <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                            <TableColumn fx:id="colTime" text="Время" prefWidth="150"/>
+                            <TableColumn fx:id="colAmount" text="Сумма" prefWidth="150"/>
+                            <TableColumn fx:id="colPaymentType" text="Тип оплаты" prefWidth="150"/>
+                        </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

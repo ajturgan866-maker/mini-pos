@@ -1,0 +1,106 @@
+/* 1. ОБЩИЕ СТИЛИ И ФОН */
+.root, .main {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #ebf5fb; /* Тот самый нежно-голубой */
+}
+
+/* Контейнер для контента (белая карточка поверх голубого фона) */
+.content-area {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+/* 2. БОКОВАЯ ПАНЕЛЬ (SIDEBAR) */
+.sidebar {
+    -fx-background-color: #2c3e50; /* Темно-синий профи-стиль */
+}
+
+.side-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ecf0f1;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 20;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.side-button:hover {
+    -fx-background-color: #34495e;
+    -fx-border-color: #3498db;
+    -fx-border-width: 0 0 0 5; /* Полоска при наведении */
+}
+
+/* 3. КНОПКИ */
+.button-primary {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.button-primary:hover {
+    -fx-background-color: #2980b9;
+}
+
+.button-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.button-danger:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* 4. ПОЛЯ ВВОДА */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 8;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2;
+}
+
+/* 5. ТАБЛИЦЫ (TABLEVIEW) */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-color: #dcdde1;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: transparent transparent #dcdde1 transparent;
+    -fx-padding: 10;
+}
+
+.table-view .cell {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+/* 6. ТЕКСТЫ */
+.label {
+    -fx-text-fill: #2c3e50; /* Темный текст для контраста с голубым */
+}
+
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2980b9;
+}

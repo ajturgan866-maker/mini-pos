@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" style="-fx-padding: 25; -fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.minipos.pos.controller.admin.ReportsController">
+
+    <HBox spacing="20">
+        <VBox style="-fx-background-color: #f4f4f4; -fx-padding: 15; -fx-background-radius: 10;" prefWidth="200">
+            <Label text="Общая выручка" style="-fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="totalRevenueLabel" text="0.00" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+        </VBox>
+
+        <VBox style="-fx-background-color: #f4f4f4; -fx-padding: 15; -fx-background-radius: 10;" prefWidth="200">
+            <Label text="Лучший кассир" style="-fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="bestCashierLabel" text="---" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #2980b9;"/>
+        </VBox>
+
+        <Button text="Обновить" onAction="#handleRefresh" style="-fx-cursor: hand;"/>
+    </HBox>
+
+    <Label text="Продажи по сотрудникам" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="cashierStatsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCashierName" text="Имя кассира" prefWidth="250"/>
+            <TableColumn fx:id="colCashierRevenue" text="Сумма продаж" prefWidth="150"/>
+        </columns>
+    </TableView>
+</VBox>

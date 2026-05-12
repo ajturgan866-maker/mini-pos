@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #ffffff; -fx-border-color: #dcdde1; -fx-border-width: 1; -fx-border-radius: 10; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.minipos.pos.controller.PaymentDialogController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+    <children>
+        <Label text="Прием оплаты" textFill="#2f3640">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+
+        <VBox spacing="5.0" style="-fx-background-color: #f5f6fa; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #dcdde1; -fx-border-radius: 8;">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="К оплате:" textFill="#7f8c8d">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="totalAmountLabel" text="0.00 руб." textFill="#c23616">
+                            <font>
+                                <Font name="System Bold" size="22.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <VBox spacing="10.0">
+            <children>
+                <Label text="Получено от клиента:" textFill="#353b48">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="cashReceivedField" onKeyReleased="#calculateChange" prefHeight="45.0" promptText="0.00" style="-fx-font-size: 18; -fx-background-radius: 5; -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 5;" />
+            </children>
+        </VBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <children>
+                <Label text="Сдача:" textFill="#7f8c8d">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="changeLabel" text="0.00 руб." textFill="#27ae60">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="15.0">
+            <children>
+                <Button minWidth="130.0" onAction="#handleCancel" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;" text="ОТМЕНА" />
+                <Button minWidth="130.0" onAction="#handleConfirm" prefHeight="40.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;" text="ПОДТВЕРДИТЬ" />
+            </children>
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>

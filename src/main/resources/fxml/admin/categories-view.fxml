@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.minipos.pos.controller.admin.CategoryController"
+            prefHeight="600.0" prefWidth="900.0">
+
+    <left>
+        <fx:include source="../shared/sidebar.fxml"/>
+    </left>
+
+    <top>
+        <HBox style="-fx-background-color: #34495e; -fx-padding: 15;">
+            <Label text="УПРАВЛЕНИЕ КАТЕГОРИЯМИ"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="nameField" promptText="Название новой категории" HBox.hgrow="ALWAYS"/>
+                <Button text="Добавить" onAction="#handleAdd"
+                        style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <TableView fx:id="categoryTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idCol" text="ID" prefWidth="80"/>
+                    <TableColumn fx:id="nameCol" text="Название категории" prefWidth="500"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10">
+                <Button text="Удалить выбранную" onAction="#handleDelete"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                <Button text="На главную" onAction="#handleBack"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
