@@ -16,7 +16,6 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    // Метод, который нужен контроллеру
     public List<Category> getAllCategories() {
         return findAll();
     }
@@ -30,10 +29,10 @@ public class CategoryService {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                categories.add(new Category(
-                        rs.getLong("id"),
-                        rs.getString("name")
-                ));
+                Category category = new Category();
+                category.setId(rs.getLong("id"));
+                category.setName(rs.getString("name"));
+                categories.add(category);
             }
         } catch (SQLException e) {
             System.err.println("Ошибка при поиске категорий: " + e.getMessage());

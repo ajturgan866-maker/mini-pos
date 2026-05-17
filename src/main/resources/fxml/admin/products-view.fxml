@@ -4,27 +4,32 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.minipos.pos.controller.admin.ProductController"
-            prefHeight="600.0" prefWidth="1000.0">
+            prefHeight="700.0" prefWidth="1100.0">
 
     <left>
         <fx:include source="../shared/sidebar.fxml"/>
     </left>
 
     <center>
-        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #f4f4f4;">
+        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #F8F9FA;">
             <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="СПИСОК ТОВАРОВ" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <VBox>
+                    <Label text="СПИСОК ТОВАРОВ И УПРАВЛЕНИЕ" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                    <Label text="Вы можете привязывать бесплатные CDN-ссылки на изображения" style="-fx-text-fill: #718096; -fx-font-size: 12;"/>
+                </VBox>
                 <Region HBox.hgrow="ALWAYS" />
                 <Button text="📥 ИМПОРТ ИЗ EXCEL" onAction="#handleImportExcel"
-                        style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-cursor: hand;"/>
+                        style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 18; -fx-cursor: hand; -fx-background-radius: 5;"/>
             </HBox>
 
-            <TableView fx:id="productTable" VBox.vgrow="ALWAYS" style="-fx-background-radius: 5;">
+            <TableView fx:id="productTable" VBox.vgrow="ALWAYS" style="-fx-background-radius: 8; -fx-border-color: #E2E8F0;">
                 <columns>
-                    <TableColumn fx:id="colName" text="Наименование" prefWidth="250"/>
-                    <TableColumn fx:id="colCategory" text="Категория" prefWidth="150"/>
+                    <TableColumn fx:id="colImage" text="Превью" prefWidth="70" resizable="false"/>
+                    <TableColumn fx:id="colName" text="Наименование" prefWidth="230"/>
+                    <TableColumn fx:id="colCategory" text="Категория" prefWidth="130"/>
                     <TableColumn fx:id="colPrice" text="Цена" prefWidth="100"/>
                     <TableColumn fx:id="colStock" text="Остаток" prefWidth="100"/>
+                    <TableColumn fx:id="colImageUrl" text="Ссылка на изображение (URL CDN)" prefWidth="250"/>
                 </columns>
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

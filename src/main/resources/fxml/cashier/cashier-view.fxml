@@ -3,77 +3,205 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.image.ImageView?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.minipos.pos.controller.cashier.CashierController"
-            stylesheets="@../../css/main.css">
+            stylesheets="@../../css/main.css"
+            prefHeight="750.0"
+            prefWidth="1200.0">
 
     <top>
-        <HBox spacing="20" style="-fx-background-color: white; -fx-padding: 10 25; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 1 0;" alignment="CENTER_LEFT">
-            <Label text="ТЕРМИНАЛ ПРОДАЖ" style="-fx-font-weight: bold; -fx-text-fill: #1976D2; -fx-font-size: 16;"/>
-            <Region HBox.hgrow="ALWAYS" />
-            <Button text="Админ-панель" onAction="#openAdminPanel" style="-fx-background-color: transparent; -fx-border-color: #1976D2; -fx-border-radius: 5;"/>
-            <Button text="Выйти" onAction="#handleLogout" style="-fx-background-color: transparent; -fx-text-fill: #D32F2F;"/>
+        <HBox spacing="20"
+              style="-fx-background-color: #1E293B; -fx-padding: 12 25;"
+              alignment="CENTER_LEFT">
+
+            <Label text="Mini-POS Терминал"
+                   style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 18;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="Админ-панель"
+                    onAction="#openAdminPanel"
+                    style="-fx-background-color: transparent;
+                           -fx-border-color: #2F6FED;
+                           -fx-border-radius: 5;
+                           -fx-text-fill: white;
+                           -fx-cursor: hand;"/>
+
+            <Button text="Выйти"
+                    onAction="#handleLogout"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: #DC3545;
+                           -fx-font-weight: bold;
+                           -fx-cursor: hand;"/>
         </HBox>
     </top>
 
     <center>
-        <HBox spacing="20" style="-fx-background-color: #F5F7FA;">
+        <HBox spacing="20"
+              alignment="CENTER_LEFT"
+              style="-fx-background-color: #F5F6FA;">
+
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-            <VBox spacing="15" HBox.hgrow="ALWAYS" styleClass="card" style="-fx-background-color: white; -fx-padding: 20;">
-                <Label text="Каталог товаров" style="-fx-font-weight: bold; -fx-font-size: 18;"/>
-                <TextField fx:id="itemSearchField" promptText="🔍 Поиск товара по названию..."
-                           style="-fx-background-radius: 8; -fx-padding: 10; -fx-font-size: 14;"/>
+            <HBox spacing="15" HBox.hgrow="ALWAYS">
 
-                <TableView fx:id="availableProductsTable" VBox.vgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="colItemName" text="Товар" prefWidth="300"/>
-                        <TableColumn fx:id="colItemPrice" text="Цена (сом)" prefWidth="150"/>
-                    </columns>
-                    <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                    </columnResizePolicy>
-                </TableView>
-            </VBox>
+                <VBox spacing="10"
+                      prefWidth="200"
+                      minWidth="180"
+                      style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);">
 
-            <VBox spacing="15" prefWidth="450" style="-fx-background-color: white; -fx-padding: 20;" styleClass="card">
-                <Label text="Детали заказа" style="-fx-font-weight: bold; -fx-font-size: 18;"/>
+                    <Label text="Категории"
+                           style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #1E293B;"/>
 
-                <TableView fx:id="cartTable" VBox.vgrow="ALWAYS" style="-fx-background-radius: 5;">
-                    <columns>
-                        <TableColumn fx:id="colCartName" text="Товар" prefWidth="200"/>
-                        <TableColumn fx:id="colCartTotal" text="Цена" prefWidth="120"/>
-                    </columns>
-                </TableView>
-
-                <VBox spacing="10" style="-fx-background-color: #F8F9FA; -fx-padding: 15; -fx-background-radius: 10;">
-                    <HBox alignment="CENTER_LEFT">
-                        <Label text="Промежуточный итог:" style="-fx-text-fill: #777777;"/>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label fx:id="lblSubtotal" text="0.00 сом" />
-                    </HBox>
-                    <HBox alignment="CENTER_LEFT">
-                        <Label text="ИТОГО:" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label fx:id="lblTotalAmount" text="0.00 сом" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #1976D2;"/>
-                    </HBox>
+                    <ListView fx:id="categoriesListView"
+                              VBox.vgrow="ALWAYS"
+                              style="-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;"/>
                 </VBox>
 
-                <Button text="ОПЛАТИТЬ" onAction="#handlePayment" maxWidth="Infinity" prefHeight="60"
-                        style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;"/>
+                <VBox spacing="15"
+                      HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: white;
+                             -fx-padding: 20;
+                             -fx-background-radius: 10;
+                             -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+
+                    <Label text="Каталог товаров"
+                           style="-fx-font-weight: bold;
+                                  -fx-font-size: 18;
+                                  -fx-text-fill: #1E293B;"/>
+
+                    <TextField fx:id="itemSearchField"
+                               promptText="🔍 Поиск товара по названию..."
+                               style="-fx-background-radius: 8;
+                                      -fx-padding: 10;
+                                      -fx-font-size: 14;
+                                      -fx-border-color: #E2E8F0;
+                                      -fx-border-radius: 8;"/>
+
+                    <TextField fx:id="barcodeScanField"
+                               promptText="📷 Отсканируйте штрих-код или введите вручную + Enter..."
+                               onAction="#handleBarcodeScan"
+                               style="-fx-background-radius: 8;
+                                      -fx-padding: 10;
+                                      -fx-font-size: 14;
+                                      -fx-border-color: #2F6FED;
+                                      -fx-border-radius: 8;"/>
+
+                    <ScrollPane fitToWidth="true"
+                                VBox.vgrow="ALWAYS"
+                                style="-fx-background: white; -fx-background-color: transparent; -fx-border-color: transparent;">
+
+                        <GridPane fx:id="productsGrid"
+                                  hgap="15"
+                                  vgap="15"
+                                  maxWidth="Infinity">
+                            <padding>
+                                <Insets top="5" right="5" bottom="5" left="5"/>
+                            </padding>
+                        </GridPane>
+
+                    </ScrollPane>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="15"
+                  prefWidth="420"
+                  maxWidth="450"
+                  minWidth="380"
+                  style="-fx-background-color: white;
+                         -fx-padding: 20;
+                         -fx-background-radius: 10;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+
+                <Label text="Текущий чек"
+                       style="-fx-font-weight: bold;
+                              -fx-font-size: 18;
+                              -fx-text-fill: #1E293B;"/>
+
+                <TableView fx:id="cartTable"
+                           VBox.vgrow="ALWAYS"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #E2E8F0;">
+
+                    <columns>
+                        <TableColumn fx:id="colCartName" text="Товар" prefWidth="180"/>
+                        <TableColumn fx:id="colCartQty" text="Кол-во" prefWidth="70"/>
+                        <TableColumn fx:id="colCartTotal" text="Сумма" prefWidth="110"/>
+                    </columns>
+
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+
+                </TableView>
+
+                <VBox spacing="10"
+                      style="-fx-background-color: #F8F9FA;
+                             -fx-padding: 15;
+                             -fx-background-radius: 10;
+                             -fx-border-color: #E2E8F0;
+                             -fx-border-radius: 10;">
+
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Позиций в чеке:" style="-fx-text-fill: #718096;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblSubtotal" text="0" style="-fx-font-weight: bold;"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="ИТОГО:" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblTotalAmount"
+                               text="0.00 сом"
+                               style="-fx-font-size: 24;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #2F6FED;"/>
+                    </HBox>
+
+                </VBox>
+
+                <Button text="ОПЛАТИТЬ"
+                        onAction="#handlePayment"
+                        maxWidth="Infinity"
+                        prefHeight="55"
+                        style="-fx-background-color: #28A745;
+                               -fx-text-fill: white;
+                               -fx-font-size: 18;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 8;
+                               -fx-cursor: hand;
+                               -fx-effect: dropshadow(three-pass-box, rgba(40,167,69,0.2), 10, 0, 0, 4);"/>
 
                 <HBox spacing="10">
-                    <Button text="Очистить" onAction="#handleClearCart" HBox.hgrow="ALWAYS" maxWidth="Infinity"
-                            style="-fx-background-color: #FFEBEE; -fx-text-fill: #D32F2F; -fx-background-radius: 5; -fx-cursor: hand;"/>
-                    <Button text="Z-Отчет" onAction="#showDailyReport" HBox.hgrow="ALWAYS" maxWidth="Infinity"
-                            style="-fx-background-color: #F5F5F5; -fx-text-fill: #424242; -fx-background-radius: 5; -fx-cursor: hand;"/>
+
+                    <Button text="Очистить чек"
+                            onAction="#handleClearCart"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"
+                            prefHeight="35"
+                            style="-fx-background-color: #FFF5F5;
+                                   -fx-text-fill: #DC3545;
+                                   -fx-border-color: #DC3545;
+                                   -fx-border-radius: 5;
+                                   -fx-background-radius: 5;
+                                   -fx-cursor: hand;"/>
+
+                    <Button text="Просмотр чека"
+                            onAction="#showDailyReport"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"
+                            prefHeight="35"
+                            style="-fx-background-color: #EDF2F7;
+                                   -fx-text-fill: #4A5568;
+                                   -fx-background-radius: 5;
+                                   -fx-cursor: hand;"/>
+
                 </HBox>
 
-                <Button text="Помощь" onAction="#showHelp" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #999999;"/>
             </VBox>
         </HBox>
     </center>

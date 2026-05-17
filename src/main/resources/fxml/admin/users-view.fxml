@@ -1,36 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.minipos.pos.controller.admin.UserController"
-            prefHeight="600.0" prefWidth="900.0">
+            style="-fx-background-color: #F0F2F5;">
 
+    <!-- LEFT -->
     <left>
         <fx:include source="../shared/sidebar.fxml"/>
     </left>
 
+    <!-- CENTER -->
     <center>
-        <VBox spacing="15" style="-fx-padding: 20;">
-            <Label text="УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
 
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <TextField fx:id="loginField" promptText="Логин" prefWidth="150"/>
-                <PasswordField fx:id="passwordField" promptText="Пароль" prefWidth="150"/>
-                <ComboBox fx:id="roleComboBox" promptText="Роль" prefWidth="120"/>
-                <Button text="Добавить" onAction="#handleAddUser"
-                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                <Button text="Удалить" onAction="#handleDeleteUser"
-                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
-            </HBox>
+        <VBox spacing="20"
+              style="-fx-padding: 25;">
 
-            <TableView fx:id="userTable" VBox.vgrow="ALWAYS">
-                <columns>
-                    <TableColumn fx:id="colLogin" text="Логин" prefWidth="150"/>
-                    <TableColumn fx:id="colRole" text="Роль" prefWidth="100"/>
-                    <TableColumn fx:id="colPassword" text="Пароль (хэш)" prefWidth="150"/>
-                </columns>
-            </TableView>
+            <!-- TITLE -->
+            <Label text="УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ"
+                   style="-fx-font-size: 22;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #1A202C;"/>
+
+            <!-- FORM CARD -->
+            <VBox spacing="12"
+                  style="-fx-background-color: white;
+                         -fx-padding: 20;
+                         -fx-background-radius: 12;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+
+                    <TextField fx:id="loginField"
+                               promptText="Логин"
+                               HBox.hgrow="ALWAYS"
+                               maxWidth="Infinity"/>
+
+                    <PasswordField fx:id="passwordField"
+                                   promptText="Пароль"
+                                   HBox.hgrow="ALWAYS"
+                                   maxWidth="Infinity"/>
+
+                    <ComboBox fx:id="roleComboBox"
+                              promptText="Роль"
+                              prefWidth="140"/>
+
+                    <Button text="Добавить"
+                            onAction="#handleAddUser"
+                            style="-fx-background-color: #28A745;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-cursor: hand;
+                                   -fx-background-radius: 8;"/>
+
+                    <Button text="Удалить"
+                            onAction="#handleDeleteUser"
+                            style="-fx-background-color: #DC3545;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-cursor: hand;
+                                   -fx-background-radius: 8;"/>
+                </HBox>
+
+            </VBox>
+
+            <!-- TABLE CARD -->
+            <VBox VBox.vgrow="ALWAYS"
+                  style="-fx-background-color: white;
+                         -fx-padding: 15;
+                         -fx-background-radius: 12;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+
+                <TableView fx:id="userTable"
+                           VBox.vgrow="ALWAYS"
+                           maxWidth="Infinity">
+
+                    <columns>
+                        <TableColumn fx:id="colLogin"
+                                     text="Логин"
+                                     prefWidth="200"/>
+
+                        <TableColumn fx:id="colRole"
+                                     text="Роль"
+                                     prefWidth="120"/>
+
+                        <TableColumn fx:id="colPassword"
+                                     text="Пароль (хэш)"
+                                     prefWidth="250"/>
+                    </columns>
+
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+
+                </TableView>
+
+            </VBox>
+
         </VBox>
+
     </center>
+
 </BorderPane>

@@ -1,22 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<HBox alignment="CENTER_LEFT" spacing="20" prefHeight="50"
-      style="-fx-background-color: #2c3e50; -fx-padding: 0 20 0 20;"
-      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.minipos.pos.controller.HeaderController">
+<HBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.minipos.pos.controller.HeaderController"
+      alignment="CENTER_LEFT"
+      spacing="15"
+      prefHeight="52"
+      style="-fx-background-color: #1E293B;
+             -fx-padding: 0 20 0 20;">
 
-    <Label text="Mini-POS" style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+    <!-- APP NAME -->
+    <Label text="Mini-POS"
+           style="-fx-text-fill: white;
+                  -fx-font-size: 18;
+                  -fx-font-weight: bold;"/>
 
-    <Region HBox.hgrow="ALWAYS" /> <HBox alignment="CENTER" spacing="10">
-    <Label fx:id="usernameLabel" text="Имя Пользователя" style="-fx-text-fill: white;"/>
-    <Label fx:id="roleLabel" text="[Роль]" style="-fx-text-fill: #bdc3c7; -fx-font-size: 12;"/>
-</HBox>
+    <Region HBox.hgrow="ALWAYS"/>
 
-    <Label fx:id="dateTimeLabel" text="01.01.2026 12:00" style="-fx-text-fill: white;"/>
+    <!-- USER INFO BLOCK -->
+    <VBox spacing="2"
+          alignment="CENTER_RIGHT">
 
-    <Button text="Выход" onAction="#handleLogout"
-            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand;"/>
+        <Label fx:id="usernameLabel"
+               text="Имя пользователя"
+               style="-fx-text-fill: white;
+                      -fx-font-weight: bold;"/>
+
+        <Label fx:id="roleLabel"
+               text="[Роль]"
+               style="-fx-text-fill: #94A3B8;
+                      -fx-font-size: 11;"/>
+
+    </VBox>
+
+    <!-- DATE -->
+    <Label fx:id="dateTimeLabel"
+           text="01.01.2026 12:00"
+           style="-fx-text-fill: #CBD5E1;
+                  -fx-font-size: 12;"/>
+
+    <!-- LOGOUT -->
+    <Button text="Выход"
+            onAction="#handleLogout"
+            style="-fx-background-color: #DC3545;
+                   -fx-text-fill: white;
+                   -fx-font-weight: bold;
+                   -fx-background-radius: 6;
+                   -fx-cursor: hand;"/>
+
 </HBox>

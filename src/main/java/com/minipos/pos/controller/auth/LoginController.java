@@ -31,6 +31,7 @@ public class LoginController {
                 SceneManager.switchScene("/fxml/cashier/cashier-view.fxml");
             }
         } else {
+            errorLabel.setText("Неверное имя пользователя или пароль");
             errorLabel.setVisible(true);
         }
     }
@@ -41,6 +42,7 @@ public class LoginController {
         alert.setTitle("Восстановление доступа");
         alert.setHeaderText(null);
         alert.setContentText("Пожалуйста, обратитесь к системному администратору для сброса пароля.");
+        alert.getDialogPane().setMinWidth(400);
         alert.showAndWait();
     }
 }

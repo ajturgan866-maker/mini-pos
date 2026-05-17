@@ -1,5 +1,6 @@
 package com.minipos.pos;
 
+import com.minipos.pos.initializer.DatabaseInitializer;
 import com.minipos.pos.util.SceneManager;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -13,7 +14,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() {
-        // Запускаем Spring контекст
+        DatabaseInitializer.init();
         springContext = new SpringApplicationBuilder(MiniposApplication.class).run();
     }
 
@@ -22,19 +23,13 @@ public class MainApp extends Application {
         SceneManager.setStage(stage);
         SceneManager.setAppContext(springContext);
 
-        // Получаем репозиторий пользователей
-        var userRepository = springContext.getBean(com.minipos.pos.repository.UserRepository.class);
-
-        // Если база пуста — запускаем окно первой настройки
-        if (userRepository.count() == 0) {
-            System.out.println(">>> База пуста. Запуск окна регистрации владельца...");
-            SceneManager.switchScene("/fxml/auth/setup-view.fxml");
-        } else {
-            System.out.println(">>> Пользователи найдены. Переход к логину.");
-            SceneManager.switchScene("/fxml/auth/login-view.fxml");
-        }
+        // Всегда включаем окно первой настройки при запуске
+        System.out.println(">>> Запуск приложения. Переход к окну первой настройки...");
+        SceneManager.switchScene("/fxml/auth/setup-view.fxml");
 
         stage.setTitle("Mini-POS System");
+        stage.setMaximized(true);
+        stage.setResizable(true);
         stage.show();
     }
 

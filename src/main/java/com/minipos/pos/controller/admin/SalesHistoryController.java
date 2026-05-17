@@ -31,19 +31,18 @@ public class SalesHistoryController {
 
     @FXML
     public void initialize() {
-        // Убедись, что эти строки совпадают с именами полей в Sale.java (Lombok)
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colItems.setCellValueFactory(new PropertyValueFactory<>("itemsSummary"));
-
-        // ВАЖНО: Если в модели поле называется "total", пишем "total"
-        colAmount.setCellValueFactory(new PropertyValueFactory<>("total"));
-
+        colItems.setCellValueFactory(new PropertyValueFactory<>("itemsList"));
+        colAmount.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
         colCashier.setCellValueFactory(new PropertyValueFactory<>("cashierName"));
 
-        // Форматирование даты (чтобы не было T в середине строки)
         colDate.setCellValueFactory(cellData -> {
-            if (cellData.getValue().getDate() != null) {
-                return new SimpleStringProperty(cellData.getValue().getDate().format(formatter));
+            try {
+                if (cellData.getValue() != null && cellData.getValue().getDate() != null) {
+                    return new SimpleStringProperty(cellData.getValue().getDate().format(formatter));
+                }
+            } catch (Exception e) {
+                return new SimpleStringProperty("-");
             }
             return new SimpleStringProperty("-");
         });
@@ -51,20 +50,15 @@ public class SalesHistoryController {
         loadHistory();
     }
 
-    @FXML // Сделал публичным, чтобы можно было вызвать кнопку "Обновить"
+    @FXML
     public void loadHistory() {
         try {
-            // Используем метод из репозитория (убедись, что он там объявлен)
             List<Sale> history = saleRepository.findAll();
-
-            // Если хочешь сортировку по дате (новые сверху), лучше сделать так:
             history.sort((s1, s2) -> s2.getDate().compareTo(s1.getDate()));
-
             salesTable.setItems(FXCollections.observableArrayList(history));
             salesTable.refresh();
-
         } catch (Exception e) {
-            System.err.println("ОШИБКА: Не удалось загрузить историю продаж: " + e.getMessage());
+            System.err.println("OШИБКА: " + e.getMessage());
             e.printStackTrace();
         }
     }

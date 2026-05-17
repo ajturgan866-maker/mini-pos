@@ -47,6 +47,6 @@ public class SetupController {
         userRepository.save(admin);
 
         // После успеха переходим на логин
-        SceneManager.switchScene("/fxml/auth/login-view.fxml");
+        SceneManager.switchScene("/fxml/admin/admin-dashboard.fxml");
     }
 }
