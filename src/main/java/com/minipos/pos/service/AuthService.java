@@ -1,67 +1,41 @@
 package com.minipos.pos.service;
 
+import com.minipos.pos.config.DatabaseConfig;
 import com.minipos.pos.model.User;
-import com.minipos.pos.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.minipos.pos.util.PasswordHasher;
+import org.springframework.stereotype.Service; // <-- 1. ДОБАВИЛИ ИМПОРТ
 
-import java.util.Optional;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-@Service
+@Service // <-- 2. ДОБАВИЛИ АННОТАЦИЮ, ЧТОБЫ SPRING УВИДЕЛ ЭТОТ КЛАСС
 public class AuthService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    /**
-     * Проверка логина: возвращает объект User, если пароль верен и юзер активен.
-     */
     public User login(String username, String password) {
-        System.out.println(">>> [AuthService] Проверка логина: " + username);
-        Optional<User> userOpt = userRepository.findByUsername(username);
+        String sql = "SELECT id, username, password, role, is_active FROM users WHERE username = ?";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    boolean isActive = rs.getBoolean("is_active");
+                    String dbPassword = rs.getString("password");
 
-        if (userOpt.isPresent()) {
-            User user = userOpt.get();
-            if (user.getPassword() != null && user.getPassword().equals(password) && user.isActive()) {
-                return user;
+                    // Сверяем хэш из базы с введенным паролем
+                    if (dbPassword != null && PasswordHasher.check(password, dbPassword) && isActive) {
+                        User user = new User();
+                        user.setId(rs.getLong("id"));
+                        user.setUsername(rs.getString("username"));
+                        user.setRole(rs.getString("role"));
+                        return user;
+                    }
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
-    }
-
-    /**
-     * Метод для LoginController: проверяет только факт успешного входа.
-     */
-    public boolean authenticate(String username, String password) {
-        return userRepository.findByUsername(username)
-                .map(user -> user.getPassword().equals(password) && user.isActive())
-                .orElse(false);
-    }
-
-    /**
-     * НОВЫЙ МЕТОД: Возвращает роль пользователя по его имени.
-     * Именно этот метод был "красным" в твоем LoginController.
-     */
-    public String getUserRole(String username) {
-        return userRepository.findByUsername(username)
-                .map(User::getRole) // Берет значение поля role (строку "ADMIN" или "CASHIER")
-                .orElse("CASHIER"); // Если что-то пошло не так, даем роль с мин. правами
-    }
-
-    /**
-     * Создание первого администратора при пустой базе.
-     */
-    @Transactional
-    public void createFirstAdmin(String username, String password) {
-        if (userRepository.count() == 0) {
-            User admin = new User();
-            admin.setUsername(username);
-            admin.setPassword(password);
-            admin.setRole("ADMIN");
-            admin.setActive(true);
-            userRepository.save(admin);
-            System.out.println(">>> [AuthService] Первый админ создан: " + username);
-        }
     }
 }

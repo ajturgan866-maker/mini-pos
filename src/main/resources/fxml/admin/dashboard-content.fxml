@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.minipos.pos.controller.admin.DashboardController"
+      spacing="24"
+      styleClass="dashboard-container">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <!-- HEADER -->
+    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="dashboard-header">
+        <Label text="%dashboard.title" styleClass="dashboard-title"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="%btn.import.excel"
+                onAction="#handleImportExcel"
+                styleClass="excel-button"/>
+    </HBox>
+
+    <!-- STATS -->
+    <HBox spacing="20" styleClass="stats-grid">
+        <VBox styleClass="stat-card">
+            <Label text="%dashboard.revenue" styleClass="stat-card-title"/>
+            <Label fx:id="revenueLabel" text="0.00" styleClass="stat-card-value"/>
+        </VBox>
+    </HBox>
+
+    <!-- PRODUCTS TABLE -->
+    <VBox VBox.vgrow="ALWAYS" styleClass="table-container">
+
+        <TableView fx:id="productsTable"
+                   VBox.vgrow="ALWAYS"
+                   styleClass="table-view products-table">
+
+            <columns>
+                <TableColumn fx:id="colId" text="%col.id" prefWidth="60"/>
+                <TableColumn fx:id="colName" text="%col.name" prefWidth="250"/>
+                <TableColumn fx:id="colCategory" text="%col.category" prefWidth="180"/>
+                <TableColumn fx:id="colPrice" text="%col.price" prefWidth="120"/>
+                <TableColumn fx:id="colImageUrl" text="%col.image" prefWidth="200"/>
+            </columns>
+
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+    </VBox>
+
+</VBox>

@@ -1,67 +1,47 @@
 package com.minipos.pos.controller.cashier;
 
 import com.minipos.pos.model.Product;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import com.minipos.pos.util.I18nUtil;
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CartController {
 
-    @FXML private TableView<Product> cartTable;
-    @FXML private Label totalLabel;
+    private static final Map<Product, Integer> currentCart = new HashMap<>();
 
-    // Список товаров в текущей корзине
-    private final ObservableList<Product> cartItems = FXCollections.observableArrayList();
-
-    @FXML
-    public void initialize() {
-        cartTable.setItems(cartItems);
-        updateTotal();
+    public static void addProduct(Product product) {
+        currentCart.put(product, currentCart.getOrDefault(product, 0) + 1);
+        // Используем I18n для логирования
+        System.out.println(String.format(I18nUtil.get("cart.added"), product.getName(), currentCart.get(product)));
     }
 
-    /**
-     * Добавить товар в корзину
-     */
-    public void addToCart(Product product) {
-        if (product != null) {
-            cartItems.add(product);
-            updateTotal();
+    public static void removeProduct(Product product) {
+        if (!currentCart.containsKey(product)) return;
+
+        int count = currentCart.get(product);
+        if (count > 1) {
+            currentCart.put(product, count - 1);
+        } else {
+            currentCart.remove(product);
         }
     }
 
-    /**
-     * Удалить выбранный товар из корзины
-     */
-    @FXML
-    public void removeFromCart() {
-        Product selected = cartTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            cartItems.remove(selected);
-            updateTotal();
+    public static BigDecimal getTotalSum() {
+        BigDecimal total = BigDecimal.ZERO;
+        for (Map.Entry<Product, Integer> entry : currentCart.entrySet()) {
+            total = total.add(entry.getKey().getPrice().multiply(new BigDecimal(entry.getValue())));
         }
+        return total;
     }
 
-    /**
-     * Полная очистка корзины (после оплаты или отмены)
-     */
-    public void clearCart() {
-        cartItems.clear();
-        updateTotal();
+    public static void clearCart() {
+        currentCart.clear();
     }
 
-    /**
-     * Пересчет итоговой суммы
-     */
-    private void updateTotal() {
-        double total = cartItems.stream()
-                .mapToDouble(Product::getPrice)
-                .sum();
-        totalLabel.setText(String.format("%.2f руб.", total));
-    }
-
-    public ObservableList<Product> getCartItems() {
-        return cartItems;
+    // Возвращаем неизменяемую копию для защиты данных
+    public static Map<Product, Integer> getCurrentCart() {
+        return Collections.unmodifiableMap(currentCart);
     }
 }

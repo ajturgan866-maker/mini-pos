@@ -1,28 +1,41 @@
 package com.minipos.pos.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Table(name = "users")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
-    private String password;
-    private String role;
 
+    // ⚠️ пароль есть, но мы контролируем доступ
+    private String password;
+
+    private String role;
     private boolean active = true;
 
-    // Ручные геттеры, сеттеры и конструкторы удалены.
-    // Lombok (@Data и @AllArgsConstructor) создаст их автоматически.
-    // Это позволит SetupService вызывать new User(null, "admin", "admin123", "ADMIN") без ошибок.
+    // конструктор для создания пользователя
+    public User(String username, String password, String role, boolean active) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.active = active;
+    }
+
+    // ⚠️ ВАЖНО: убираем утечку пароля в логах
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", role='" + role + '\'' +
+                ", active=" + active +
+                '}';
+    }
 }

@@ -1,0 +1,79 @@
+/* ==========================================================================
+   СТИЛЬ ТЕРМИНАЛА КАССИРА (cashier-style.css)
+   ========================================================================== */
+
+/* Сетка для плиток фастфуд-меню (Кнопки с едой) */
+.menu-grid {
+    -fx-hgap: 15;
+    -fx-vgap: 15;
+    -fx-padding: 10;
+}
+
+/* Отдельная плитка товара (Бургер / Кофе) */
+.product-card {
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-cursor: hand;
+    -fx-min-width: 160px;
+    -fx-min-height: 180px;
+    -fx-max-width: 160px;
+    -fx-max-height: 180px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.03), 8, 0, 0, 2);
+}
+
+.product-card:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+/* Картинка блюда внутри плитки */
+.product-image {
+    -fx-fit-width: 90px;
+    -fx-fit-height: 90px;
+    -fx-preserve-ratio: true;
+}
+
+/* Название товара на плитке */
+.product-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+
+/* Цена товара на плитке */
+.product-price {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #22c55e;
+}
+
+/* Блок правой панели — Корзина заказа */
+.cart-panel {
+    -fx-min-width: 400px;
+    -fx-max-width: 420px;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+}
+
+/* Крупный индикатор финальной суммы к оплате */
+.total-sum-box {
+    -fx-padding: 15;
+    -fx-background-radius: 8;
+    -fx-alignment: center-right;
+}
+
+.total-sum-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+/* Кнопка «Оформить заказ / Сдать чек» */
+.checkout-button {
+    -fx-font-size: 18px;
+    -fx-padding: 15 30 15 30;
+    -fx-background-radius: 8;
+    -fx-max-width: infinity;
+}

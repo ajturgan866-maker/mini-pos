@@ -1,0 +1,164 @@
+.dark-theme {
+    -fx-background-color: #0d0e15;
+}
+
+/* ROOT */
+.dark-theme .dashboard-container {
+    -fx-background-color: #0d0e15;
+}
+
+/* HEADER */
+.dark-theme .dashboard-header {
+    -fx-background-color: transparent;
+}
+
+.dark-theme .dashboard-title,
+.dark-theme .login-title-label,
+.dark-theme .stat-card-value {
+    -fx-text-fill: #00f2fe;
+    -fx-effect: dropshadow(gaussian, rgba(0,242,254,0.45), 10, 0, 0, 0);
+}
+
+/* SIDEBAR */
+.dark-theme .sidebar {
+    -fx-background-color: #11121d;
+}
+
+/* LABELS */
+.dark-theme .label {
+    -fx-text-fill: #e2e8f0;
+}
+
+/* BUTTONS */
+.dark-theme .button {
+    -fx-background-color: linear-gradient(to bottom, #2563eb, #1d4ed8);
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.35), 14, 0, 0, 4);
+}
+
+.dark-theme .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #3b82f6, #2563eb);
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.55), 18, 0, 0, 6);
+}
+
+/* TABLE BASE */
+.dark-theme .table-view {
+    -fx-background-color: #11121d;
+    -fx-control-inner-background: #11121d;
+    -fx-table-cell-border-color: #1f202e;
+    -fx-border-color: #1f202e;
+}
+
+/* HEADER TABLE */
+.dark-theme .table-view .column-header-background {
+    -fx-background-color: #151726;
+}
+
+.dark-theme .table-view .column-header,
+.dark-theme .table-view .filler {
+    -fx-background-color: #151726;
+    -fx-border-color: #1f202e;
+}
+
+.dark-theme .table-view .column-header .label {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-weight: bold;
+}
+
+/* CELLS */
+.dark-theme .table-cell {
+    -fx-text-fill: #e2e8f0;
+}
+
+/* ROWS */
+.dark-theme .table-row-cell {
+    -fx-background-color: #11121d;
+}
+
+.dark-theme .table-row-cell:filled:selected {
+    -fx-background-color: #2563eb;
+}
+
+.dark-theme .table-row-cell:filled:hover {
+    -fx-background-color: #1a1b29;
+}
+
+/* PRODUCTS TABLE SPECIAL */
+.dark-theme .products-table {
+    -fx-background-color: #11121d;
+}
+
+/* CATEGORY TABLE (если добавишь позже) */
+.dark-theme .category-table .table-row-cell:filled {
+    -fx-background-color: #0f111a;
+}
+
+/* STAFF TABLE */
+.dark-theme .staff-table .table-row-cell:filled {
+    -fx-background-color: #0c0e16;
+}
+
+/* CARDS */
+.dark-theme .product-card {
+    -fx-background-color: #1f2937;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-border-color: rgba(37,99,235,0.25);
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.20), 18, 0, 0, 6);
+}
+
+.dark-theme .product-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.40), 26, 0, 0, 10);
+    -fx-translate-y: -2;
+}
+
+/* PRODUCT TEXT */
+.dark-theme .product-name {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.dark-theme .product-price {
+    -fx-text-fill: #9ca3af;
+}
+
+/* ADD BUTTON */
+.dark-theme .add-button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+}
+
+.dark-theme .add-button:hover {
+    -fx-background-color: #1d4ed8;
+}
+.dark-theme .table-view {
+    -fx-border-color: #1f202e;
+    -fx-border-width: 1;
+    -fx-background-color: #11121d;
+    -fx-control-inner-background: #11121d;
+}
+
+/* ГЛАВНОЕ — ГРАНИЦЫ ЯЧЕЕК */
+.dark-theme .table-cell {
+    -fx-border-color: #1f202e;
+    -fx-border-width: 0 1 0 0; /* только вертикальные линии */
+}
+
+/* ГРАНИЦЫ СТРОК */
+.dark-theme .table-row-cell {
+    -fx-border-color: #1f202e;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* HEADER BORDER */
+.dark-theme .column-header {
+    -fx-border-color: #1f202e;
+    -fx-border-width: 0 1 1 0;
+}
+
+.dark-theme .column-header-background {
+    -fx-border-color: #1f202e;
+}

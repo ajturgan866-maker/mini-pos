@@ -1,16 +1,8 @@
 package com.minipos.pos.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "settings") // Создаст таблицу settings в Postgres
 public class Settings {
 
-    @Id
-    private Long id = 1L; // Всегда будет только одна запись с ID 1
-
+    private Long id = 1L; // Всегда одна запись в системе для конфигурации кассы
     private String shopName;
     private String address;
     private String currency;
@@ -25,7 +17,6 @@ public class Settings {
         this.taxNumber = taxNumber;
     }
 
-    // Геттеры и сеттеры (оставь свои, только добавь для ID)
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

@@ -1,18 +1,5 @@
-CREATE TABLE users (
-                       id SERIAL PRIMARY KEY,
-                       username VARCHAR(100) UNIQUE NOT NULL,
-                       password VARCHAR(255) NOT NULL,
-                       role VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE products (
-                          id SERIAL PRIMARY KEY,
-                          name VARCHAR(255),
-                          price NUMERIC(10,2),
-                          stock INT
-);
-
-CREATE TABLE categories (
-                            id SERIAL PRIMARY KEY,
-                            name VARCHAR(100)
-);
+INSERT INTO products (name, price, image_path) VALUES
+                                                   ('Пицца Маргарита', 450.00, 'pizza_margherita.png'),
+                                                   ('Пицца Пепперони', 520.00, 'pizza_pepperoni.png'),
+                                                   ('Ролл Филадельфия', 380.00, 'sushi_philadelphia.png'),
+                                                   ('Бургер Классический', 250.00, 'burger_cheese.png');

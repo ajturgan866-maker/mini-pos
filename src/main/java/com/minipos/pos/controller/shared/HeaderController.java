@@ -1,35 +1,43 @@
 package com.minipos.pos.controller.shared;
 
+import com.minipos.pos.util.I18nUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class HeaderController {
 
-    @FXML private Label usernameLabel; // Имя пользователя
-    @FXML private Label roleLabel;     // Роль (Админ или Кассир)
-    @FXML private Label dateTimeLabel; // Текущее время
+    @FXML private Label usernameLabel;
+    @FXML private Label roleLabel;
+    @FXML private Label dateTimeLabel;
 
     @FXML
     public void initialize() {
-        // Устанавливаем текущую дату
+        updateDateTime();
+    }
+
+    private void updateDateTime() {
+        // Формат даты может зависеть от локали
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         dateTimeLabel.setText(dtf.format(LocalDateTime.now()));
     }
 
     /**
-     * Метод для установки данных пользователя при входе
+     * Установка данных с локализацией роли
      */
     public void setUserInfo(String username, String role) {
         usernameLabel.setText(username);
-        roleLabel.setText("[" + role + "]");
+
+        // Локализуем роль: если в базе "ADMIN", ищем "role.admin"
+        String localizedRole = I18nUtil.get("role." + role.toLowerCase());
+        roleLabel.setText("[" + localizedRole + "]");
     }
 
     @FXML
     private void handleLogout() {
-        // Логика выхода (закрытие окна или переход на Login)
-        System.out.println("Пользователь вышел из системы");
-        System.exit(0);
+        // Здесь можно вызывать SceneManager.switchScene, как в других контроллерах
+        System.out.println(I18nUtil.get("msg.logout"));
     }
 }

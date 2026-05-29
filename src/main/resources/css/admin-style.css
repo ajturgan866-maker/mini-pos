@@ -1,0 +1,92 @@
+```css
+    /* ROOT */
+
+.root-container {
+    -fx-background-color: #0f172a;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #111827, #0f172a);
+
+    -fx-border-color: #1e293b;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* TITLE */
+
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-subtitle {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 12px;
+}
+
+/* SEPARATOR */
+
+.sidebar-separator {
+    -fx-opacity: 0.15;
+}
+
+/* NAV BUTTONS */
+
+.nav-button {
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-padding: 14 16;
+
+    -fx-background-radius: 12;
+
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #1e293b;
+    -fx-text-fill: white;
+}
+
+.nav-button:pressed {
+    -fx-background-color: #334155;
+}
+
+/* ACTIVE BUTTON */
+
+.nav-button.active {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+}
+
+/* LOGOUT */
+
+.logout-button {
+    -fx-background-color: #7f1d1d;
+
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 12;
+
+    -fx-padding: 14;
+}
+
+.logout-button:hover {
+    -fx-background-color: #991b1b;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    -fx-background-color: #0f172a;
+}
+```

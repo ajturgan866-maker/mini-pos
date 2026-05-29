@@ -1,26 +1,50 @@
 package com.minipos.pos.repository;
 
-import com.minipos.pos.model.Category;
+import com.minipos.pos.config.DatabaseConfig;
 import com.minipos.pos.model.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-/**
- * Репозиторий для работы с товарами.
- */
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public class ProductRepository {
 
-    // ВАРИАНТ 1: Если хочешь искать по текстовому имени категории (например, "Напитки")
-    // Spring сам поймет, что нужно зайти в объект Category и проверить поле Name
-    List<Product> findByCategoryName(String categoryName);
+    public List<Product> findByInStockTrue() {
+        List<Product> products = new ArrayList<>();
 
-    // ВАРИАНТ 2: Если у тебя уже есть объект Category и ты хочешь найти все товары в ней
-    List<Product> findByCategory(Category category);
+        String sql = """
+            SELECT id, name, price, category, image_url, in_stock
+            FROM products
+            WHERE in_stock = TRUE
+        """;
 
-    // Поиск по точному названию товара
-    Optional<Product> findByName(String name);
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+
+                Product product = new Product(
+                        rs.getLong("id"),
+                        rs.getString("name"),
+                        rs.getBigDecimal("price"),
+                        rs.getString("category"),   // ✔ теперь правильно
+                        rs.getString("image_url"),  // ✔ совпадает с моделью
+                        rs.getBoolean("in_stock")
+                );
+
+                products.add(product);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Ошибка при выполнении findByInStockTrue: " + e.getMessage());
+        }
+
+        return products;
+    }
 }

@@ -1,25 +1,24 @@
 package com.minipos.pos.initializer;
 
-import com.minipos.pos.repository.SettingsRepository;
-import org.springframework.stereotype.Component;
-import jakarta.annotation.PostConstruct;
+import com.minipos.pos.config.DatabaseConfig;
 
-@Component // Позволяет Spring управлять этим классом
+import java.sql.*;
+
 public class ApplicationInitializer {
+    public static void initializeApplication() {
+        String createTableSQL = "CREATE TABLE IF NOT EXISTS users (" +
+                "id SERIAL PRIMARY KEY, " +
+                "username VARCHAR(50) UNIQUE NOT NULL, " +
+                "password VARCHAR(255) NOT NULL, " +
+                "role VARCHAR(20), " +
+                "is_active BOOLEAN DEFAULT true)";
 
-    private final SettingsRepository settingsRepository;
-
-    // Spring сам передаст сюда нужный объект (Bean) при запуске
-    public ApplicationInitializer(SettingsRepository settingsRepository) {
-        this.settingsRepository = settingsRepository;
-    }
-
-    @PostConstruct // Этот метод выполнится автоматически СРАЗУ после запуска приложения
-    public void init() {
-        // Проверяем, есть ли настройки в базе
-        if (settingsRepository.count() == 0) {
-            System.out.println(">>> Инициализация: Настройки не найдены, создаем дефолтные...");
-            // Здесь можно вызвать databaseInitializer или просто сохранить пустые настройки
+        try (Connection conn = DatabaseConfig.getConnection();
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(createTableSQL);
+            System.out.println(">>> База данных успешно инициализирована.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

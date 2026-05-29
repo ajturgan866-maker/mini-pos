@@ -1,44 +1,35 @@
 package com.minipos.pos.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import java.math.BigDecimal;
 
-@Entity
-@Table(name = "products")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-
     private String name;
-    private double price;
-    private int stock;
-
-    @Column(name = "image_url")
+    private BigDecimal price;
+    private String category;
     private String imageUrl;
+    private boolean inStock;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    public Product(Long id,
+                   String name,
+                   BigDecimal price,
+                   String category,
+                   String imageUrl,
+                   boolean inStock) {
 
-    // Конструктор №1: Новый (с картинкой) — используется в ручном добавлении/кассе
-    public Product(String name, double price, int stock, String imageUrl, Category category) {
+        this.id = id;
         this.name = name;
         this.price = price;
-        this.stock = stock;
+        this.category = category;
         this.imageUrl = imageUrl;
-        this.category = category;
+        this.inStock = inStock;
     }
 
-    // Конструктор №2: СТАРАЯ ВЕРСИЯ (без картинки) — спасет твой импорт из Excel!
-    public Product(String name, double price, int stock, Category category) {
-        this.name = name;
-        this.price = price;
-        this.stock = stock;
-        this.imageUrl = null; // По умолчанию картинки нет, касса сама подставит заглушку
-        this.category = category;
-    }
+    public Long getId() { return id; }
+    public String getName() { return name; }
+    public BigDecimal getPrice() { return price; }
+    public String getCategory() { return category; }
+    public String getImageUrl() { return imageUrl; }
+    public boolean isInStock() { return inStock; }
 }

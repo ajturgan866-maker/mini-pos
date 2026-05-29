@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.minipos.pos.controller.cashier.CashierOrderController"
+            styleClass="app-root"
+            prefWidth="1300"
+            prefHeight="780">
+
+    <!-- TOP -->
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="20"
+              styleClass="header">
+
+            <Label text="%cashier.title"
+                   styleClass="header-title"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="%btn.theme"
+                    onAction="#handleToggleTheme"
+                    styleClass="nav-button"/>
+
+            <Button text="%btn.logout"
+                    onAction="#handleLogout"
+                    styleClass="logout-button"/>
+
+        </HBox>
+    </top>
+
+    <!-- CENTER -->
+    <center>
+        <HBox spacing="15"
+              styleClass="cashier-root">
+
+            <!-- padding FIX -->
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <!-- LEFT -->
+            <VBox prefWidth="200"
+                  spacing="10"
+                  styleClass="sidebar">
+
+                <Label text="%menu.categories"
+                       styleClass="section-title"/>
+
+                <ListView fx:id="categoryList"
+                          VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+            <!-- CENTER -->
+            <VBox spacing="10"
+                  HBox.hgrow="ALWAYS"
+                  styleClass="main-content">
+
+                <TextField fx:id="searchField"
+                           promptText="%search.placeholder"
+                           styleClass="search-field"/>
+
+                <FlowPane fx:id="menuGrid"
+                          hgap="10"
+                          vgap="10"
+                          styleClass="menu-grid"/>
+            </VBox>
+
+            <!-- RIGHT -->
+            <VBox prefWidth="280"
+                  maxWidth="280"
+                  minWidth="260"
+                  spacing="10"
+                  styleClass="order-panel">
+
+                <Label text="%order.current"
+                       styleClass="section-title"/>
+
+                <TableView fx:id="orderTable"
+                           VBox.vgrow="ALWAYS">
+
+                    <columns>
+
+                        <TableColumn fx:id="colItemName"
+                                     text="%order.item.name"
+                                     prefWidth="160"/>
+
+                        <TableColumn fx:id="colItemPrice"
+                                     text="%order.item.price"
+                                     prefWidth="100"/>
+
+                    </columns>
+
+                </TableView>
+
+                <Label fx:id="totalLabel"
+                       styleClass="total-label"/>
+
+                <ComboBox fx:id="paymentMethodBox"
+                          maxWidth="Infinity"/>
+
+                <Button text="%btn.pay"
+                        maxWidth="Infinity"
+                        prefHeight="45"
+                        onAction="#handlePayment"
+                        styleClass="pay-button"/>
+
+            </VBox>
+
+        </HBox>
+    </center>
+
+</BorderPane>

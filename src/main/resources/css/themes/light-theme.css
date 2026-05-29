@@ -1,0 +1,158 @@
+.light-theme {
+    -fx-background-color: #f5f7fb;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.light-theme .label {
+    -fx-text-fill: #111827;
+}
+
+/* =========================
+   LOGIN / TITLES
+========================= */
+
+.light-theme .login-title-label,
+.light-theme .dashboard-title,
+.light-theme .users-title {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.light-theme .modern-text-field {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: #6b7280;
+
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 8;
+}
+
+/* =========================
+   BASE BUTTONS (НЕ ТРОГАЕМ СИСТЕМНЫЕ)
+========================= */
+
+.light-theme .button {
+    -fx-background-color: #e5e7eb;
+    -fx-text-fill: #111827;
+}
+
+.light-theme .button:hover {
+    -fx-background-color: #d1d5db;
+}
+
+/* =========================
+   BLUE ACTION BUTTONS (ВАЖНО)
+   язык / тема / forgot password
+========================= */
+
+.light-theme .link-footer-btn,
+.light-theme .forgot-password-link,
+.light-theme .eye-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2563eb;
+    -fx-font-weight: bold;
+}
+
+.light-theme .link-footer-btn:hover,
+.light-theme .forgot-password-link:hover,
+.light-theme .eye-button:hover {
+    -fx-text-fill: #1d4ed8;
+    -fx-underline: true;
+}
+
+/* =========================
+   PRIMARY LOGIN BUTTON
+========================= */
+
+.light-theme .modern-login-btn {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
+
+.light-theme .modern-login-btn:hover {
+    -fx-background-color: #1d4ed8;
+}
+
+/* =========================
+   TABLE FIX
+========================= */
+
+.light-theme .table-view {
+    -fx-background-color: white;
+    -fx-control-inner-background: white;
+    -fx-border-color: #e5e7eb;
+}
+
+.light-theme .table-view .column-header-background {
+    -fx-background-color: #f3f4f6;
+}
+
+.light-theme .table-view .column-header .label {
+    -fx-text-fill: #111827;
+    -fx-font-weight: bold;
+}
+
+.light-theme .table-cell {
+    -fx-text-fill: #111827;
+}
+
+.light-theme .table-row-cell {
+    -fx-background-color: white;
+}
+
+.light-theme .table-row-cell:filled:hover {
+    -fx-background-color: #f3f4f6;
+}
+
+.light-theme .table-row-cell:filled:selected {
+    -fx-background-color: #bfdbfe;
+}
+.light-theme {
+    -fx-text-base-color: #111827;
+}
+
+/* FIX TEXT */
+.light-theme .label {
+    -fx-text-fill: #111827;
+}
+
+/* TITLES */
+.light-theme .login-title-label,
+.light-theme .dashboard-title,
+.light-theme .users-title {
+    -fx-text-fill: #111827;
+}
+
+/* INPUTS */
+.light-theme .modern-text-field {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: #6b7280;
+    -fx-border-color: #d1d5db;
+}
+
+/* BUTTONS — как ты хотел (голубые) */
+.light-theme .button {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+}
+
+.light-theme .button:hover {
+    -fx-background-color: #2563eb;
+}
+
+/* LINK BUTTONS (forgot / language / theme) */
+.light-theme .forgot-password-link,
+.light-theme .link-footer-btn {
+    -fx-text-fill: #2563eb;
+}

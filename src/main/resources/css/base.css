@@ -1,0 +1,74 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial;
+}
+
+/* =========================
+   TEXT SYSTEM (SAFE)
+========================= */
+
+.label {
+    -fx-text-fill: -fx-text-base-color;
+}
+
+/* fallback цвета (будут переопределяться темами) */
+.root {
+    -fx-text-base-color: #111827;
+}
+
+/* =========================
+   TITLES
+========================= */
+
+.login-title-label,
+.dashboard-title,
+.users-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 28px;
+}
+
+/* =========================
+   LOGIN EXTRA TEXT
+========================= */
+
+.login-welcome-text {
+    -fx-font-size: 18px;
+}
+
+.login-subtitle {
+    -fx-font-size: 14px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.modern-text-field {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+/* =========================
+   BUTTONS BASE
+========================= */
+
+.button {
+    -fx-background-radius: 8;
+}
+
+/* =========================
+   LINKS (Forgot / language / theme)
+========================= */
+
+.forgot-password-link,
+.link-footer-btn {
+    -fx-background-color: transparent;
+    -fx-underline: true;
+}
+
+/* =========================
+   TABLE BASE
+========================= */
+
+.table-view {
+    -fx-background-radius: 6;
+}

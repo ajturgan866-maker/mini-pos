@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" style="-fx-padding: 30; -fx-background-color: #f8fafc;"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.minipos.pos.controller.admin.MenuManagementController">
+
+    <Label text="%menu.management.title" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="%btn.add.product" onAction="#handleAddProduct" styleClass="btn-action"/>
+        <Button text="%btn.delete.product" onAction="#handleDeleteProduct" styleClass="btn-action"/>
+        <Pane HBox.hgrow="ALWAYS" />
+        <Button text="%btn.import.excel" onAction="#handleImportExcel" style="-fx-background-color: #10b981; -fx-text-fill: white;"/>
+    </HBox>
+
+    <TableView fx:id="menuTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="%col.id" prefWidth="60"/>
+            <TableColumn fx:id="colName" text="%col.name" prefWidth="250"/>
+            <TableColumn fx:id="colCategory" text="%col.category" prefWidth="150"/>
+            <TableColumn fx:id="colPrice" text="%col.price" prefWidth="100"/>
+        </columns>
+    </TableView>
+</VBox>

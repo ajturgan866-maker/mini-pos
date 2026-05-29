@@ -1,107 +1,111 @@
+/* ==========================================================================
+   ОСНОВНОЙ СТИЛЬ СИСТЕМЫ MINI-POS (main.css)
+   Задает глобальные шрифты, размеры, анимации и стили кнопок
+   ========================================================================== */
 
-primaryStage.setMinWidth(1100);
-primaryStage.setMinHeight(700);
-   primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/app-icon.png")));
-
-/* Основные цвета из макета */
+/* Настройка глобального шрифта для всего приложения */
 .root {
-    -fx-accent: #1976D2;
-    -fx-background-color: #F5F7FA;
-}
-
-/* Карточки статистики */
-.card {
-    -fx-background-color: white;
-    -fx-background-radius: 12;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 4);
-    -fx-padding: 20;
-}
-
-/* Боковая панель */
-.sidebar {
-    -fx-background-color: white;
-    -fx-border-color: #E0E0E0;
-    -fx-border-width: 0 1 0 0;
-}
-
-/* Кнопки меню */
-.menu-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: #616161;
-    -fx-alignment: CENTER_LEFT;
-    -fx-padding: 10 20;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 14px;
+}
+
+/* --- СТИЛИЗАЦИЯ КНОПОК (Buttons) --- */
+.button {
+    -fx-padding: 10 20 10 20;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
     -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-transition: all 0.2s ease-in-out;
 }
 
-.menu-button:hover {
-    -fx-background-color: #F0F4F8;
-    -fx-text-fill: #1976D2;
-}
-
-.menu-button-active {
-    -fx-background-color: #E3F2FD;
-    -fx-text-fill: #1976D2;
-    -fx-border-color: transparent transparent transparent #1976D2;
-    -fx-border-width: 0 0 0 4;
-}
-
-/* Таблицы */
-.table-view {
-    -fx-background-color: transparent;
-    -fx-base: white;
-    -fx-selection-bar: #E3F2FD;
-}
-
-/* Убираем лишние рамки у таблицы */
-.table-view {
-    -fx-background-color: white;
-    -fx-border-color: transparent;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: #F8F9FA;
-    -fx-border-color: transparent transparent #EEEEEE transparent;
-}
-
-.table-view .column-header {
-    -fx-background-color: transparent;
-    -fx-size: 40;
-}
-
-.table-view .table-row-cell {
-    -fx-cell-size: 50;
-    -fx-border-color: transparent transparent #F1F1F1 transparent;
-}
-
-.table-view .table-row-cell:filled:selected {
-    -fx-background-color: #E3F2FD;
-    -fx-text-fill: #1976D2;
-}
-
-/* Стили для кнопок в диалоговых окнах */
-.dialog-pane .button {
-    -fx-background-color: #1976D2;
+/* Кнопка успеха / Добавления (Зеленая) */
+.button-success {
+    -fx-background-color: #22c55e;
     -fx-text-fill: white;
-    -fx-background-radius: 5;
-    -fx-padding: 8 15;
+}
+.button-success:hover {
+    -fx-background-color: #16a34a;
+}
+.button-success:pressed {
+    -fx-background-color: #15803d;
 }
 
-.dialog-pane .button:hover {
-    -fx-background-color: #1565C0;
+/* Кнопка удаления / Отмены / Выхода (Красная) */
+.button-danger {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+}
+.button-danger:hover {
+    -fx-background-color: #dc2626;
+}
+.button-danger:pressed {
+    -fx-background-color: #b91c1c;
 }
 
-/* Поля ввода в стиле Windows */
-.text-field {
-    -fx-background-color: white;
-    -fx-border-color: #E0E0E0;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-padding: 8;
+/* Кнопка действия / Изменения (Синяя) */
+.button-primary {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+}
+.button-primary:hover {
+    -fx-background-color: #2563eb;
 }
 
-.text-field:focused {
-    -fx-border-color: #1976D2;
-    -fx-border-width: 2;
-    -fx-padding: 7; /* уменьшаем на 1, чтобы текст не прыгал из-за ширины границы */
+/* --- СТИЛИЗАЦИЯ БОКОВОЙ ПАНЕЛИ (Sidebar) --- */
+.sidebar {
+    -fx-background-color: #0f172a;
+    -fx-padding: 25;
+}
+
+.sidebar .label {
+    -fx-text-fill: #ffffff;
+}
+
+/* --- КАРТОЧКИ АНАЛИТИКИ И ЭЛЕМЕНТЫ МЕНЮ --- */
+.card {
+    -fx-padding: 20;
+    -fx-background-radius: 12;
+    /* Легкий эффект тени для создания объема в веб-стиле */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 4);
+}
+
+/* Специфичные метки для сумм (крупный шрифт) */
+.stat-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* --- МОДЛЬНЫЕ ОКНА И АЛЕРТЫ (AlertUtil) --- */
+.dialog-pane {
+    -fx-background-color: inherit; /* Наследует цвет фона от текущей темы */
+    -fx-padding: 15;
+}
+
+.dialog-pane .label.content {
+    -fx-font-size: 14px;
+    -fx-padding: 10 0 10 0;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: transparent;
+}
+
+.dialog-pane .button-bar .button {
+    -fx-padding: 6 15 6 15;
+    -fx-font-size: 12px;
+}
+
+/* --- ДЕКОРАТИВНЫЕ РАЗДЕЛИТЕЛИ --- */
+.separator {
+    -fx-opacity: 0.2;
+}
+
+/* Настройки для плавного скроллинга таблиц */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+.scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb {
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 4;
 }

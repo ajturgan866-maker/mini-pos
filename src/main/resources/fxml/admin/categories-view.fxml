@@ -5,33 +5,19 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.minipos.pos.controller.admin.CategoryController">
+            fx:controller="com.minipos.pos.controller.admin.CategoryController"
+            stylesheets="@/css/main.css, @/css/admin-style.css">
 
-    <!-- LEFT -->
     <left>
         <fx:include source="../shared/sidebar.fxml"/>
     </left>
 
-    <!-- TOP -->
-    <top>
-        <HBox style="-fx-background-color: #34495e; -fx-padding: 15;"
-              alignment="CENTER_LEFT">
-
-            <Label text="УПРАВЛЕНИЕ КАТЕГОРИЯМИ"
-                   style="-fx-text-fill: white;
-                          -fx-font-weight: bold;
-                          -fx-font-size: 18;"/>
-        </HBox>
-    </top>
-
-    <!-- CENTER -->
     <center>
-        <VBox spacing="12"
-              style="-fx-padding: 20;">
+        <VBox spacing="20" style="-fx-padding: 25;">
 
-            <!-- INPUT ROW -->
-            <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="УПРАВЛЕНИЕ КАТЕГОРИЯМИ" styleClass="admin-header"/>
 
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="card">
                 <TextField fx:id="nameField"
                            promptText="Название новой категории"
                            HBox.hgrow="ALWAYS"
@@ -39,49 +25,24 @@
 
                 <Button text="Добавить"
                         onAction="#handleAdd"
-                        style="-fx-background-color: #2ecc71;
-                               -fx-text-fill: white;
-                               -fx-font-weight: bold;
-                               -fx-cursor: hand;"/>
+                        styleClass="button-success"/>
             </HBox>
 
-            <!-- TABLE -->
-            <TableView fx:id="categoryTable"
-                       VBox.vgrow="ALWAYS"
-                       maxWidth="Infinity">
-
+            <TableView fx:id="categoryTable" VBox.vgrow="ALWAYS" maxWidth="Infinity" styleClass="admin-table">
                 <columns>
-                    <TableColumn fx:id="idCol"
-                                 text="ID"
-                                 prefWidth="80"/>
-
-                    <TableColumn fx:id="nameCol"
-                                 text="Название категории"
-                                 prefWidth="500"/>
+                    <TableColumn fx:id="idCol" text="ID" prefWidth="80"/>
+                    <TableColumn fx:id="nameCol" text="Название категории" prefWidth="500"/>
                 </columns>
-
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                 </columnResizePolicy>
-
             </TableView>
 
-            <!-- ACTIONS -->
             <HBox spacing="10">
-
                 <Button text="Удалить выбранную"
                         onAction="#handleDelete"
-                        style="-fx-background-color: #e74c3c;
-                               -fx-text-fill: white;
-                               -fx-cursor: hand;"/>
-
-                <Button text="На главную"
-                        onAction="#handleBack"
-                        style="-fx-background-color: #ecf0f1;
-                               -fx-text-fill: #2c3e50;"/>
+                        styleClass="button-danger"/>
             </HBox>
-
         </VBox>
     </center>
-
 </BorderPane>

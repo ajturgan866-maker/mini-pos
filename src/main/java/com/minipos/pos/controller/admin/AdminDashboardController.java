@@ -1,62 +1,53 @@
 package com.minipos.pos.controller.admin;
 
-import com.minipos.pos.model.Sale;
-import com.minipos.pos.service.SaleService;
-import com.minipos.pos.service.ReportService;
+import com.minipos.pos.util.ScannerManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
-
-@Controller
+@Component
 public class AdminDashboardController {
 
-    @Autowired private SaleService saleService;
-    @Autowired private ReportService reportService;
-
-    @FXML private Label lblTodaySales;
-    @FXML private Label lblTotalOrders;
-    @FXML private Label lblTopCategory;
-    @FXML private TableView<Sale> recentSalesTable;
-    @FXML private TableColumn<Sale, Integer> colId;
-    @FXML private TableColumn<Sale, Double> colAmount;
+    @FXML private StackPane contentArea;
 
     @FXML
     public void initialize() {
-        setupTable();
-        refreshStats();
+        Platform.runLater(this::showDashboard);
     }
 
-    private void setupTable() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colAmount.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
-        // Добавь остальные колонки согласно твоей модели Sale
+    private void loadView(String fxml) {
+        try {
+            if (contentArea == null) {
+                System.err.println("❌ Ошибка: contentArea равен null!");
+                return;
+            }
+
+            // ScannerManager.loadFxml уже делает applyThemeToNode(view) внутри себя.
+            // Тебе не нужно вручную удалять/добавлять классы тем.
+            Parent view = ScannerManager.loadFxml("/fxml/admin/" + fxml);
+
+            // Просто меняем содержимое.
+            // ScannerManager сам применит нужные CSS-классы к загруженному view.
+            contentArea.getChildren().setAll(view);
+
+            System.out.println("DEBUG: Успешно загружена вкладка: " + fxml);
+
+        } catch (Exception e) {
+            System.err.println("❌ Не удалось загрузить FXML: /fxml/admin/" + fxml);
+            e.printStackTrace();
+        }
     }
 
-    public void refreshStats() {
-        // Подтягиваем данные из БД через сервисы
-        double todayTotal = saleService.getTodaySalesTotal();
-        int ordersCount = saleService.getTodayOrdersCount();
-
-        lblTodaySales.setText(String.format("%.2f сом", todayTotal));
-        lblTotalOrders.setText(String.valueOf(ordersCount));
-
-        // Загружаем последние 10 продаж в таблицу
-        List<Sale> latestSales = saleService.getLatestSales(10);
-        recentSalesTable.getItems().setAll(latestSales);
-    }
+    @FXML private void showDashboard() { loadView("dashboard-content.fxml"); }
+    @FXML private void showHistory()   { loadView("history-content.fxml"); }
+    @FXML private void showUsers()     { loadView("users-content.fxml"); }
+    @FXML private void showSettings()  { loadView("settings-content.fxml"); }
+    @FXML private void showReports()   { loadView("reports-content.fxml"); }
 
     @FXML
-    private void handleZReport() {
-        // Логика из твоего старого кода
-        reportService.generateZReport();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Z-Отчет");
-        alert.setHeaderText(null);
-        alert.setContentText("Z-отчёт успешно сформирован и сохранен в базе данных.");
-        alert.showAndWait();
+    private void handleLogout() {
+        ScannerManager.switchScene("/fxml/auth/login-view.fxml", "Mini-POS Login");
     }
 }

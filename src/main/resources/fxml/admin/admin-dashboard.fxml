@@ -1,70 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.minipos.pos.controller.admin.AdminDashboardController"
-            stylesheets="@../../css/main.css">
+            styleClass="app-root">
 
+    <!-- SIDEBAR -->
     <left>
-        <fx:include source="../shared/sidebar.fxml" fx:id="sidebar"/>
+        <VBox spacing="12"
+              prefWidth="260"
+              maxWidth="260"
+              styleClass="sidebar">
+
+            <padding>
+                <Insets top="24" right="18" bottom="24" left="18"/>
+            </padding>
+
+            <!-- LOGO -->
+            <VBox spacing="4" styleClass="sidebar-header">
+                <Label text="Mini-POS" styleClass="sidebar-title neon-text"/>
+                <Label text="Admin Panel" styleClass="sidebar-subtitle"/>
+            </VBox>
+
+            <Separator styleClass="sidebar-separator"/>
+
+            <!-- NAV BUTTONS -->
+            <Button text="%nav.dashboard" onAction="#showDashboard" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="%nav.history" onAction="#showHistory" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="%nav.reports" onAction="#showReports" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="%nav.users" onAction="#showUsers" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="%nav.settings" onAction="#showSettings" styleClass="nav-button" maxWidth="Infinity"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Separator styleClass="sidebar-separator"/>
+
+            <Button text="%nav.logout"
+                    onAction="#handleLogout"
+                    styleClass="logout-button"
+                    maxWidth="Infinity"/>
+
+        </VBox>
     </left>
 
+    <!-- CONTENT -->
     <center>
-        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
-            <VBox spacing="25" style="-fx-background-color: #F5F7FA;">
-                <padding>
-                    <Insets top="30" right="30" bottom="30" left="30"/>
-                </padding>
+        <StackPane fx:id="contentArea"
+                   styleClass="main-content"
+                   BorderPane.alignment="CENTER">
 
-                <HBox alignment="CENTER_LEFT">
-                    <VBox HBox.hgrow="ALWAYS">
-                        <Label text="Обзор системы" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
-                        <Label fx:id="lblWelcome" text="Добро пожаловать, администратор" style="-fx-text-fill: gray;"/>
-                    </VBox>
-                    <Button text="Сформировать Z-отчет" onAction="#handleZReport"
-                            style="-fx-background-color: #1976D2; -fx-text-fill: white; -fx-padding: 10 20;"/>
-                </HBox>
+            <padding>
+                <Insets top="24" right="24" bottom="24" left="24"/>
+            </padding>
 
-                <HBox spacing="20" HBox.hgrow="ALWAYS">
-                    <VBox styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
-                        <Label text="Выручка за сегодня" style="-fx-text-fill: #757575;"/>
-                        <Label fx:id="lblTodaySales" text="0.00 сом" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
-                    </VBox>
-
-                    <VBox styleClass="card" HBox.hgrow="ALWAYS">
-                        <Label text="Продаж (кол-во)" style="-fx-text-fill: #757575;"/>
-                        <Label fx:id="lblTotalOrders" text="0" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-                    </VBox>
-
-                    <VBox styleClass="card" HBox.hgrow="ALWAYS">
-                        <Label text="Популярная категория" style="-fx-text-fill: #757575;"/>
-                        <Label fx:id="lblTopCategory" text="---" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1976D2;"/>
-                    </VBox>
-                </HBox>
-
-                <VBox styleClass="card" VBox.vgrow="ALWAYS">
-                    <Label text="Последние транзакции" style="-fx-font-weight: bold; -fx-padding: 0 0 15 0;"/>
-                    <TableView fx:id="recentSalesTable"
-                               prefHeight="400"
-                               VBox.vgrow="ALWAYS">
-
-                        <columns>
-                            <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
-                            <TableColumn fx:id="colTime" text="Время" prefWidth="150"/>
-                            <TableColumn fx:id="colAmount" text="Сумма" prefWidth="150"/>
-                            <TableColumn fx:id="colPaymentType" text="Тип оплаты" prefWidth="150"/>
-                        </columns>
-
-                        <columnResizePolicy>
-                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                        </columnResizePolicy>
-
-                    </TableView>
-                </VBox>
-            </VBox>
-        </ScrollPane>
+        </StackPane>
     </center>
+
 </BorderPane>
